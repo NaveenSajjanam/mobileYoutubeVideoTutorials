@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Get Json Data</title>
+	<style>
+		#myDiv{
+			border:1px solid orange;
+		}
+	</style>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<h1>HEADING</h1>
+<h1 id="myHeader">My Header</h1>
+
+<div id="myDiv">
+
+<h1>root element</h1>
+</div>
+
+<script>
+const myJSON='[{"id":"cook001","url":"https://www.youtube.com/embed/Khgd1EESV5Q","title":"Gongura Chutney","category":"COOKING"},{"id":"code001","url":"https://www.youtube.com/embed/v0krU1eTzO0","title":"Build Node.js Password Login From Scratch","category":"CODING"},{"id":"code002","url":"https://www.youtube.com/embed/VSEEb_iyCgk","title":"JWT Explained in 13 Minutes","category":"CODING"},{"id":"code003","url":"https://www.youtube.com/embed/qPWUl0JDbHc","title":"JWT Authentication & Authorization in Node.js","category":"CODING"},{"id":"code004","url":"https://www.youtube.com/embed/wEfaoAa99XY","title":"Responsive Side Navigation Bar in HTML CSS And JavaScript","category":"CODING"},{"id":"code005","url":"https://www.youtube.com/embed/ClsOgoc1btk","title":"Dynamic Routing in React: Get Params Value and Fetch API Data for a Single Movie","category":"CODING"},{"id":"code006","url":"https://www.youtube.com/embed/9BkFF7U84bg","title":"Secure Your React App: Using ENV Variables to Protect Private Data","category":"CODING"}]';
+const myObj=JSON.parse(myJSON);
+console.log(myObj);
+
+const rootDiv = document.getElementById("myDiv");
+
+function getSelected(){
+	let result=[];
+	myObj.map(eachItem=>{
+		if(eachItem.category ==="COOKING"){
+			result.push(eachItem);
+		}		
+		return result		
+	})
+	console.log("Result: ", result);
+}
+getSelected()
+
+function displayData(){
+	
+	myObj.map(item => {
+		const idElment = document.createElement("p");
+		const videoElement = document.createElement("IFRAME");
+		const titleElement = document.createElement("h2");
+		
+		idElment.textContent=item.id;
+		console.log(item.id);
+		rootDiv.appendChild(idElment);
+		
+		console.log(item.url);
+		videoElement.setAttribute("src",item.url);		
+		
+		rootDiv.appendChild(videoElement);
+	})
+	
+}
+displayData()
+
+</script>
+
+</body>
+
+</html>
